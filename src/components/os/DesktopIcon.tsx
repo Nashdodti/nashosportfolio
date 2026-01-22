@@ -38,12 +38,11 @@ export function DesktopIcon({
       className={`desktop-icon ${isSelected ? 'selected' : ''}`}
       onClick={handleClick}
       whileTap={{ scale: 0.95 }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
     >
-      {icon}
-      <span className="text-xs font-medium text-foreground text-center max-w-[80px] leading-tight">
+      <div className="desktop-icon-image w-16 h-16 sm:w-20 sm:h-20">
+        {icon}
+      </div>
+      <span className={`desktop-icon-label max-w-[80px] truncate`}>
         {label}
       </span>
     </motion.button>
