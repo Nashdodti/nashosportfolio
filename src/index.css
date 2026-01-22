@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=SF+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    /* OS-inspired color palette - warm, professional, playful */
-    --background: 45 20% 97%;
+    /* macOS-inspired color palette */
+    --background: 220 15% 96%;
     --foreground: 220 25% 10%;
     
     --card: 0 0% 100%;
@@ -16,44 +16,46 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 25% 10%;
     
-    /* Primary: Deep teal */
-    --primary: 172 66% 35%;
+    /* Primary: macOS blue */
+    --primary: 211 100% 50%;
     --primary-foreground: 0 0% 100%;
     
-    /* Secondary: Warm cream */
-    --secondary: 40 30% 94%;
+    /* Secondary */
+    --secondary: 220 14% 96%;
     --secondary-foreground: 220 25% 15%;
     
-    --muted: 40 15% 92%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 10% 45%;
     
-    /* Accent: Coral/peach */
-    --accent: 15 80% 60%;
+    /* Accent: Purple */
+    --accent: 280 60% 55%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 40 20% 88%;
-    --input: 40 20% 88%;
-    --ring: 172 66% 35%;
+    --border: 220 13% 87%;
+    --input: 220 13% 87%;
+    --ring: 211 100% 50%;
     
-    --radius: 0.75rem;
+    --radius: 0.625rem;
     
-    /* Custom OS theme tokens */
+    /* macOS theme tokens */
     --window-bg: 0 0% 100%;
-    --window-header: 220 25% 12%;
-    --window-header-foreground: 0 0% 100%;
-    --desktop-texture: 45 25% 92%;
+    --window-header: 220 14% 96%;
+    --window-header-foreground: 220 25% 25%;
+    --desktop-gradient-start: 214 80% 70%;
+    --desktop-gradient-end: 280 60% 65%;
     --icon-bg: 0 0% 100%;
-    --icon-selected: 172 66% 90%;
-    --taskbar: 220 25% 8%;
-    --taskbar-foreground: 0 0% 95%;
+    --icon-selected: 211 100% 92%;
+    --dock-bg: 0 0% 100%;
+    --dock-border: 220 13% 85%;
     
     /* Shadows */
-    --shadow-window: 0 25px 50px -12px hsl(220 25% 10% / 0.25);
-    --shadow-icon: 0 4px 12px hsl(220 25% 10% / 0.1);
-    --shadow-icon-hover: 0 8px 24px hsl(220 25% 10% / 0.15);
+    --shadow-window: 0 22px 70px 4px hsl(220 25% 10% / 0.15), 0 0 0 1px hsl(220 13% 87% / 0.5);
+    --shadow-dock: 0 0 0 1px hsl(220 13% 85% / 0.5), 0 10px 40px hsl(220 25% 10% / 0.12);
+    --shadow-icon: 0 8px 24px hsl(220 25% 10% / 0.15);
+    --shadow-icon-hover: 0 12px 32px hsl(220 25% 10% / 0.2);
     
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -66,46 +68,48 @@
   }
 
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 40 20% 95%;
+    --background: 220 20% 10%;
+    --foreground: 220 14% 95%;
     
-    --card: 220 25% 12%;
-    --card-foreground: 40 20% 95%;
+    --card: 220 20% 14%;
+    --card-foreground: 220 14% 95%;
     
-    --popover: 220 25% 12%;
-    --popover-foreground: 40 20% 95%;
+    --popover: 220 20% 14%;
+    --popover-foreground: 220 14% 95%;
     
-    --primary: 172 60% 45%;
-    --primary-foreground: 220 25% 8%;
+    --primary: 211 100% 55%;
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 40 20% 90%;
+    --secondary: 220 18% 18%;
+    --secondary-foreground: 220 14% 90%;
     
-    --muted: 220 20% 15%;
-    --muted-foreground: 220 15% 55%;
+    --muted: 220 18% 16%;
+    --muted-foreground: 220 10% 55%;
     
-    --accent: 15 75% 55%;
+    --accent: 280 55% 60%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 62.8% 45%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 172 60% 45%;
+    --border: 220 18% 22%;
+    --input: 220 18% 22%;
+    --ring: 211 100% 55%;
     
-    --window-bg: 220 25% 12%;
-    --window-header: 220 25% 8%;
-    --window-header-foreground: 40 20% 95%;
-    --desktop-texture: 220 25% 10%;
-    --icon-bg: 220 20% 18%;
-    --icon-selected: 172 60% 20%;
-    --taskbar: 220 25% 5%;
-    --taskbar-foreground: 40 20% 95%;
+    --window-bg: 220 20% 14%;
+    --window-header: 220 18% 18%;
+    --window-header-foreground: 220 14% 85%;
+    --desktop-gradient-start: 220 25% 18%;
+    --desktop-gradient-end: 260 20% 22%;
+    --icon-bg: 220 18% 20%;
+    --icon-selected: 211 60% 25%;
+    --dock-bg: 220 18% 16%;
+    --dock-border: 220 18% 24%;
     
-    --shadow-window: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
-    --shadow-icon: 0 4px 12px hsl(0 0% 0% / 0.3);
-    --shadow-icon-hover: 0 8px 24px hsl(0 0% 0% / 0.4);
+    --shadow-window: 0 22px 70px 4px hsl(0 0% 0% / 0.35), 0 0 0 1px hsl(220 18% 24% / 0.5);
+    --shadow-dock: 0 0 0 1px hsl(220 18% 24% / 0.5), 0 10px 40px hsl(0 0% 0% / 0.25);
+    --shadow-icon: 0 8px 24px hsl(0 0% 0% / 0.3);
+    --shadow-icon-hover: 0 12px 32px hsl(0 0% 0% / 0.4);
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -125,83 +129,157 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
   }
   
   code, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'SF Mono', 'JetBrains Mono', monospace;
   }
 }
 
 @layer components {
-  /* Desktop background texture */
+  /* macOS Desktop gradient background */
   .desktop-bg {
-    background-color: hsl(var(--desktop-texture));
-    background-image: 
-      radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.03) 0%, transparent 50%),
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: overlay;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--desktop-gradient-start)) 0%,
+      hsl(var(--desktop-gradient-end)) 100%
+    );
+    position: relative;
   }
   
-  /* Window styles */
+  /* Frosted glass effect for windows */
   .os-window {
     @apply rounded-xl overflow-hidden;
-    background: hsl(var(--window-bg));
+    background: hsl(var(--window-bg) / 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     box-shadow: var(--shadow-window);
+    border: 1px solid hsl(var(--border) / 0.5);
   }
   
   .os-window-header {
-    @apply h-10 flex items-center px-3 gap-2;
-    background: hsl(var(--window-header));
+    @apply h-12 flex items-center px-4 gap-2;
+    background: hsl(var(--window-header) / 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid hsl(var(--border) / 0.3);
     color: hsl(var(--window-header-foreground));
   }
   
   .window-control {
-    @apply w-3 h-3 rounded-full transition-transform hover:scale-110;
+    @apply w-3 h-3 rounded-full transition-all duration-150;
+    position: relative;
+  }
+  
+  .window-control::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  
+  .window-control:hover::after {
+    opacity: 1;
   }
   
   .window-control-close {
-    @apply bg-red-500;
+    background: hsl(0 72% 51%);
+    box-shadow: inset 0 0 0 0.5px hsl(0 72% 40%);
+  }
+  
+  .window-control-close:hover::after {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3.5 3.5l5 5M8.5 3.5l-5 5' stroke='%23000' stroke-opacity='0.6' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
   }
   
   .window-control-minimize {
-    @apply bg-yellow-500;
+    background: hsl(45 93% 47%);
+    box-shadow: inset 0 0 0 0.5px hsl(45 93% 37%);
+  }
+  
+  .window-control-minimize:hover::after {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6h7' stroke='%23000' stroke-opacity='0.6' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
   }
   
   .window-control-maximize {
-    @apply bg-green-500;
+    background: hsl(120 45% 45%);
+    box-shadow: inset 0 0 0 0.5px hsl(120 45% 35%);
   }
   
-  /* Icon styles */
+  .window-control-maximize:hover::after {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l2.5-3.5L7 6 4.5 9.5 2 6zM5 6l2.5-3.5L10 6 7.5 9.5 5 6z' fill='%23000' fill-opacity='0.6'/%3E%3C/svg%3E");
+  }
+  
+  /* macOS Dock */
+  .dock {
+    background: hsl(var(--dock-bg) / 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid hsl(var(--dock-border) / 0.5);
+    box-shadow: var(--shadow-dock);
+  }
+  
+  .dock-icon {
+    @apply relative flex items-center justify-center transition-transform duration-200 cursor-pointer;
+  }
+  
+  .dock-icon:hover {
+    transform: translateY(-8px) scale(1.15);
+  }
+  
+  .dock-icon-indicator {
+    @apply absolute -bottom-1.5 w-1 h-1 rounded-full bg-foreground/60;
+  }
+  
+  /* Desktop Icon styles */
   .desktop-icon {
-    @apply flex flex-col items-center gap-2 p-3 rounded-xl cursor-pointer transition-all duration-200;
+    @apply flex flex-col items-center gap-1 p-2 rounded-lg cursor-pointer transition-all duration-150;
     @apply select-none;
   }
   
-  .desktop-icon:hover {
-    background: hsl(var(--icon-bg) / 0.7);
+  .desktop-icon:hover .desktop-icon-image {
+    transform: scale(1.05);
   }
   
   .desktop-icon.selected {
-    background: hsl(var(--icon-selected));
+    background: hsl(var(--icon-selected) / 0.6);
+    backdrop-filter: blur(8px);
   }
   
-  /* Taskbar */
-  .taskbar {
-    background: hsl(var(--taskbar));
-    color: hsl(var(--taskbar-foreground));
+  .desktop-icon-image {
+    @apply transition-transform duration-200;
+    filter: drop-shadow(0 4px 8px hsl(0 0% 0% / 0.15));
+  }
+  
+  .desktop-icon-label {
+    @apply text-xs font-medium text-center px-1.5 py-0.5 rounded;
+    color: white;
+    text-shadow: 0 1px 2px hsl(0 0% 0% / 0.5);
+  }
+  
+  .desktop-icon.selected .desktop-icon-label {
+    background: hsl(var(--primary));
+    text-shadow: none;
+  }
+  
+  /* Menu bar (top) */
+  .menu-bar {
+    background: hsl(var(--dock-bg) / 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid hsl(var(--border) / 0.3);
   }
   
   /* Terminal styles */
   .terminal {
     @apply font-mono text-sm;
     background: hsl(220 25% 8%);
-    color: hsl(142 70% 60%);
+    color: hsl(120 70% 70%);
   }
   
   .terminal-prompt {
-    color: hsl(172 66% 50%);
+    color: hsl(211 100% 60%);
   }
   
   /* Timeline styles */
@@ -210,21 +288,21 @@
     box-shadow: 0 0 0 2px hsl(var(--primary));
   }
   
-  /* Scrollbar */
+  /* macOS-style Scrollbar */
   .os-scrollbar::-webkit-scrollbar {
     @apply w-2;
   }
   
   .os-scrollbar::-webkit-scrollbar-track {
-    @apply bg-muted rounded-full;
+    @apply bg-transparent;
   }
   
   .os-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/30 rounded-full;
+    @apply bg-foreground/20 rounded-full;
   }
   
   .os-scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted-foreground/50;
+    @apply bg-foreground/30;
   }
 }
 
@@ -250,5 +328,11 @@
   @keyframes pulse-subtle {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
+  }
+  
+  .glass {
+    background: hsl(var(--card) / 0.7);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
   }
 }

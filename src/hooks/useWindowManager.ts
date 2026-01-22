@@ -11,15 +11,16 @@ const defaultWindowSizes: Record<WindowId, { width: number; height: number }> = 
 
 const getInitialPosition = (id: WindowId, isMobile: boolean) => {
   if (isMobile) {
-    return { x: 10, y: 60 };
+    return { x: 10, y: 40 };
   }
   
+  // Offset from menu bar (28px)
   const offsets: Record<WindowId, { x: number; y: number }> = {
-    resume: { x: 100, y: 80 },
-    experience: { x: 150, y: 100 },
-    projects: { x: 200, y: 60 },
-    about: { x: 250, y: 120 },
-    contact: { x: 180, y: 90 },
+    resume: { x: 150, y: 60 },
+    experience: { x: 200, y: 80 },
+    projects: { x: 250, y: 50 },
+    about: { x: 300, y: 100 },
+    contact: { x: 220, y: 70 },
   };
   return offsets[id];
 };

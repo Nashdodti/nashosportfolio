@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useWindowManager } from '@/hooks/useWindowManager';
 import { DesktopIcon } from '@/components/os/DesktopIcon';
 import { Window } from '@/components/os/Window';
-import { Taskbar } from '@/components/os/Taskbar';
+import { Dock } from '@/components/os/Dock';
+import { MenuBar } from '@/components/os/MenuBar';
 import { desktopIcons, windowIcons, windowTitles } from '@/components/os/iconConfig';
 import { ResumeContent } from '@/components/windows/ResumeContent';
 import { ExperienceContent } from '@/components/windows/ExperienceContent';
@@ -37,12 +38,14 @@ export default function Desktop() {
     }
   };
 
-  const handleWindowClick = (id: WindowId) => {
+  const handleDockClick = (id: WindowId) => {
     const window = windows.find(w => w.id === id);
     if (window?.isMinimized) {
       openWindow(id);
-    } else {
+    } else if (window?.isOpen) {
       focusWindow(id);
+    } else {
+      openWindow(id);
     }
   };
 
@@ -51,19 +54,22 @@ export default function Desktop() {
       className="h-screen w-screen desktop-bg overflow-hidden relative"
       onClick={handleDesktopClick}
     >
+      {/* Menu Bar */}
+      <MenuBar />
+
       {/* Desktop Icons */}
       <motion.div 
-        className="absolute top-4 left-4 flex flex-col gap-2 z-0"
+        className="absolute top-10 left-4 flex flex-col gap-1 z-0 pt-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.3 }}
       >
         {desktopIcons.map((icon, index) => (
           <motion.div
             key={icon.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 + index * 0.08 }}
+            transition={{ delay: 0.2 + index * 0.06 }}
           >
             <DesktopIcon
               id={icon.id}
@@ -79,18 +85,18 @@ export default function Desktop() {
 
       {/* Welcome Message */}
       <motion.div 
-        className="absolute bottom-20 right-8 max-w-sm text-right hidden lg:block"
+        className="absolute bottom-24 right-8 max-w-sm text-right hidden lg:block"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.6 }}
       >
-        <h1 className="text-4xl font-bold text-foreground mb-2">
+        <h1 className="text-4xl font-bold text-white mb-2 drop-shadow-lg">
           Hi, I'm <span className="text-gradient">Nash</span>
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-white/90 drop-shadow-md">
           Data Analyst & Product Builder
         </p>
-        <p className="text-sm text-muted-foreground/70 mt-2">
+        <p className="text-sm text-white/70 mt-2 drop-shadow-sm">
           Double-click an icon to explore →
         </p>
       </motion.div>
@@ -113,8 +119,8 @@ export default function Desktop() {
         ))}
       </AnimatePresence>
 
-      {/* Taskbar */}
-      <Taskbar windows={windows} onWindowClick={handleWindowClick} />
+      {/* macOS Dock */}
+      <Dock windows={windows} onIconClick={handleDockClick} />
     </div>
   );
 }
