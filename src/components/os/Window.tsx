@@ -28,10 +28,11 @@ export function Window({
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const media = window.matchMedia('(max-width: 767px)');
+    const sync = () => setIsMobile(media.matches);
+    sync();
+    media.addEventListener('change', sync);
+    return () => media.removeEventListener('change', sync);
   }, []);
 
   if (windowState.isMinimized) return null;
@@ -49,17 +50,19 @@ export function Window({
         className="fixed os-window"
         style={{
           zIndex: windowState.zIndex,
+          top: isMobile ? 'var(--menubar-h)' : undefined,
+          left: isMobile ? 0 : undefined,
           width: isMobile ? '100vw' : windowState.size.width,
-          height: isMobile ? 'calc(100dvh - 32px)' : windowState.size.height,
+          height: isMobile ? 'calc(100dvh - var(--menubar-h) - var(--dock-h) + 1.1rem)' : windowState.size.height,
           maxWidth: '100vw',
-          maxHeight: isMobile ? 'calc(100dvh - 32px)' : 'calc(100vh - 120px)',
+          maxHeight: isMobile ? 'calc(100dvh - var(--menubar-h) - var(--dock-h) + 1.1rem)' : 'calc(100vh - 120px)',
         }}
         initial={{ opacity: 0, scale: 0.95, x: windowState.position.x, y: windowState.position.y + 10 }}
         animate={{ 
           opacity: 1, 
           scale: 1, 
           x: isMobile ? 0 : windowState.position.x,
-          y: isMobile ? 32 : windowState.position.y,
+          y: isMobile ? 0 : windowState.position.y,
         }}
         exit={{ opacity: 0, scale: 0.95, y: windowState.position.y + 10 }}
         transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
@@ -109,11 +112,11 @@ export function Window({
           </div>
           
           {/* Spacer for centering */}
-          <div className="w-[52px]" />
+          <div className={isMobile ? 'w-8' : 'w-[52px]'} />
         </div>
         
         {/* Window Content */}
-        <div className="h-[calc(100%-48px)] overflow-auto os-scrollbar bg-card pb-safe">
+        <div className="os-window-body h-[calc(100%-48px)] overflow-auto os-scrollbar bg-card pb-safe">
           {children}
         </div>
       </motion.div>

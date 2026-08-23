@@ -1,17 +1,19 @@
-import { motion } from 'framer-motion';
+import { AppleAppIcon } from './AppleAppIcon';
 
 export function ProjectsIcon() {
   return (
-    <motion.div 
-      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-yellow-400 flex items-center justify-center"
-      whileHover={{ rotate: [0, -5, 5, 0] }}
-      transition={{ duration: 0.3 }}
-    >
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 10C4 8.89543 4.89543 8 6 8H12L14 11H26C27.1046 11 28 11.8954 28 13V24C28 25.1046 27.1046 26 26 26H6C4.89543 26 4 25.1046 4 24V10Z" fill="white" fillOpacity="0.9"/>
-        <rect x="8" y="15" width="16" height="2" rx="1" fill="#EAB308" fillOpacity="0.5"/>
-        <rect x="8" y="19" width="12" height="2" rx="1" fill="#EAB308" fillOpacity="0.3"/>
+    <AppleAppIcon gradient="bg-[linear-gradient(165deg,#ffe566_0%,#f5c518_50%,#e0a106_100%)]">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path
+          d="M5.2 12.4c0-1.2.9-2.1 2.1-2.1h5.4l1.7 2.1H24.6c1.2 0 2.2 1 2.2 2.2v9.1c0 1.4-1.1 2.5-2.5 2.5H7.7A2.5 2.5 0 0 1 5.2 23.7V12.4Z"
+          fill="white"
+          fillOpacity="0.92"
+        />
+        <path
+          d="M5.2 15.4h21.6v8.3c0 1.4-1.1 2.5-2.5 2.5H7.7A2.5 2.5 0 0 1 5.2 23.7V15.4Z"
+          fill="#fff6d1"
+        />
       </svg>
-    </motion.div>
+    </AppleAppIcon>
   );
 }

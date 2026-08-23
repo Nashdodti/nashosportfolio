@@ -1,16 +1,17 @@
-import { motion } from 'framer-motion';
+import { AppleAppIcon } from './AppleAppIcon';
 
 export function AboutIcon() {
   return (
-    <motion.div 
-      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center"
-      whileHover={{ rotate: [0, -5, 5, 0] }}
-      transition={{ duration: 0.3 }}
-    >
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="12" r="5" fill="white" fillOpacity="0.9"/>
-        <path d="M8 26C8 21.5817 11.5817 18 16 18C20.4183 18 24 21.5817 24 26" stroke="white" strokeWidth="3" strokeLinecap="round" strokeOpacity="0.9"/>
+    <AppleAppIcon gradient="bg-[linear-gradient(160deg,#5ac8fa_0%,#0a84ff_48%,#0066d6_100%)]">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <circle cx="16" cy="12.2" r="5.1" fill="white" />
+        <path
+          d="M7.2 26.4c.6-4.6 4.2-7.4 8.8-7.4s8.2 2.8 8.8 7.4"
+          stroke="white"
+          strokeWidth="3.4"
+          strokeLinecap="round"
+        />
       </svg>
-    </motion.div>
+    </AppleAppIcon>
   );
 }

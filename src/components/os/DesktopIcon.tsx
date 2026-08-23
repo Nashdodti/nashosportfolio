@@ -29,16 +29,17 @@ export function DesktopIcon({
 
   return (
     <motion.button
-      className={`desktop-icon ${isSelected ? 'selected' : ''}`}
+      type="button"
+      className={`desktop-icon touch-manipulation ${isSelected ? 'selected' : ''}`}
       onClick={handleClick}
       onDoubleClick={onDoubleClick}
       aria-label={`Open ${label}`}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.92 }}
     >
-      <div className="desktop-icon-image w-16 h-16">
+      <div className="desktop-icon-image">
         {icon}
       </div>
-      <span className={`desktop-icon-label max-w-[80px] truncate`}>
+      <span className="desktop-icon-label">
         {label}
       </span>
     </motion.button>

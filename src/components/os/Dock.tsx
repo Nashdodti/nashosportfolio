@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { WindowState, WindowId } from '@/types/os';
 import { desktopIcons } from './iconConfig';
 
@@ -9,36 +10,44 @@ interface DockProps {
 
 export function Dock({ windows, onIconClick }: DockProps) {
   const openWindowIds = windows.filter(w => w.isOpen).map(w => w.id);
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const sync = () => setCanHover(media.matches);
+    sync();
+    media.addEventListener('change', sync);
+    return () => media.removeEventListener('change', sync);
+  }, []);
 
   return (
-    <motion.div 
-      className="fixed bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-50"
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: 0.3, duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-    >
-      <div className="dock rounded-[22px] sm:rounded-2xl px-2 py-2 flex items-end gap-1">
+    <div className="dock-wrap">
+      <motion.div 
+        className="dock"
+        initial={{ y: 36, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.15, duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+      >
         {desktopIcons.map((icon, index) => {
           const isOpen = openWindowIds.includes(icon.id);
           
           return (
             <motion.button
               key={icon.id}
-              className="dock-icon group"
+              type="button"
+              className="dock-icon group touch-manipulation"
               onClick={() => onIconClick(icon.id)}
-              initial={{ opacity: 0, y: 20 }}
+              aria-label={icon.label}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + index * 0.05 }}
-              whileHover={{ y: -8, scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
+              transition={{ delay: 0.2 + index * 0.03 }}
+              whileHover={canHover ? { y: -8, scale: 1.12 } : undefined}
+              whileTap={{ scale: 0.94 }}
             >
-              <div className="w-11 h-11 sm:w-14 sm:h-14 flex items-center justify-center">
-                <div className="w-full h-full rounded-xl overflow-hidden">
-                  {icon.icon}
-                </div>
+              <div className="dock-icon-image">
+                {icon.icon}
               </div>
               
-              {/* Active indicator */}
               {isOpen && (
                 <motion.div 
                   className="dock-icon-indicator"
@@ -48,14 +57,13 @@ export function Dock({ windows, onIconClick }: DockProps) {
                 />
               )}
               
-              {/* Tooltip */}
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md bg-foreground/90 text-background text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+              <div className="dock-tooltip">
                 {icon.label}
               </div>
             </motion.button>
           );
         })}
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

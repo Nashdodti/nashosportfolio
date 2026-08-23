@@ -64,14 +64,14 @@ export default function Desktop() {
         className="desktop-app-grid absolute z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+        transition={{ duration: 0.35 }}
       >
         {desktopIcons.map((icon, index) => (
           <motion.div
             key={icon.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 + index * 0.06 }}
+            transition={{ delay: 0.08 + index * 0.04, duration: 0.35 }}
           >
             <DesktopIcon
               id={icon.id}
@@ -104,14 +104,13 @@ export default function Desktop() {
       </motion.div>
 
       <motion.section
-        className="mobile-profile-widget sm:hidden"
+        className="mobile-home-header sm:hidden"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.18 }}
       >
-        <span className="text-[11px] font-semibold uppercase text-white/70">Portfolio</span>
-        <h1 className="mt-1 text-2xl font-semibold text-white">Nash Dodti</h1>
-        <p className="mt-0.5 text-sm text-white/80">Senior Data Analyst at Uber</p>
+        <p className="text-[13px] font-medium text-white/80">Senior Data Analyst</p>
+        <h1 className="mt-0.5 text-[28px] font-semibold tracking-tight text-white">Nash Dodti</h1>
       </motion.section>
 
       {/* Windows */}

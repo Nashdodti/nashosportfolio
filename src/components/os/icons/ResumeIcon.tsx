@@ -1,20 +1,19 @@
-import { motion } from 'framer-motion';
+import { AppleAppIcon } from './AppleAppIcon';
 
 export function ResumeIcon() {
   return (
-    <motion.div 
-      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center"
-      whileHover={{ rotate: [0, -5, 5, 0] }}
-      transition={{ duration: 0.3 }}
-    >
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="4" width="20" height="24" rx="2" fill="white" fillOpacity="0.9"/>
-        <rect x="9" y="8" width="14" height="2" rx="1" fill="currentColor" className="text-primary"/>
-        <rect x="9" y="12" width="10" height="1.5" rx="0.75" fill="currentColor" className="text-primary/50"/>
-        <rect x="9" y="15" width="14" height="1.5" rx="0.75" fill="currentColor" className="text-primary/30"/>
-        <rect x="9" y="18" width="12" height="1.5" rx="0.75" fill="currentColor" className="text-primary/30"/>
-        <rect x="9" y="22" width="8" height="1.5" rx="0.75" fill="currentColor" className="text-primary/50"/>
+    <AppleAppIcon gradient="bg-[linear-gradient(160deg,#ff6b5b_0%,#d93829_55%,#b91c1c_100%)]">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path
+          d="M8.5 4.5h11.2L24.5 9.3V26a2 2 0 0 1-2 2h-14a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2Z"
+          fill="white"
+        />
+        <path d="M19.5 4.6V8a1.5 1.5 0 0 0 1.5 1.5h3.4" fill="#f4c7c2" />
+        <rect x="11" y="13.2" width="10" height="1.6" rx="0.8" fill="#d93829" />
+        <rect x="11" y="16.6" width="8.2" height="1.3" rx="0.65" fill="#e8b4ae" />
+        <rect x="11" y="19.6" width="10" height="1.3" rx="0.65" fill="#e8b4ae" />
+        <rect x="11" y="22.6" width="6.4" height="1.3" rx="0.65" fill="#e8b4ae" />
       </svg>
-    </motion.div>
+    </AppleAppIcon>
   );
 }
