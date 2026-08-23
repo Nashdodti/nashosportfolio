@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Sparkles, MapPin, Heart, Coffee, Rocket, Code } from 'lucide-react';
+import { Sparkles, MapPin, Heart, Coffee, Rocket, Code, Quote } from 'lucide-react';
 
 export function AboutContent() {
   return (
@@ -58,8 +58,8 @@ export function AboutContent() {
               <Code className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-medium text-foreground text-sm">Product Thinking</h3>
-              <p className="text-xs text-muted-foreground">Building tools that solve real problems</p>
+              <h3 className="font-medium text-foreground text-sm">Business Problems</h3>
+              <p className="text-xs text-muted-foreground">Solving real-world challenges</p>
             </div>
           </div>
           <div className="p-3 rounded-lg bg-secondary/50 flex items-start gap-3">
@@ -67,8 +67,8 @@ export function AboutContent() {
               <Heart className="w-5 h-5 text-accent" />
             </div>
             <div>
-              <h3 className="font-medium text-foreground text-sm">Data Storytelling</h3>
-              <p className="text-xs text-muted-foreground">Making numbers meaningful</p>
+              <h3 className="font-medium text-foreground text-sm">Data-Driven Decisions</h3>
+              <p className="text-xs text-muted-foreground">Turning insights into action</p>
             </div>
           </div>
         </div>
@@ -84,8 +84,11 @@ export function AboutContent() {
           <Coffee className="w-5 h-5 text-yellow-500" />
           When I'm Not Working
         </h2>
+        <p className="text-sm text-muted-foreground mb-3">
+          You'll probably find me traveling to new places, learning something new, hitting the gym, or exploring different cuisines around the city.
+        </p>
         <div className="flex flex-wrap gap-2">
-          {['📊 Dashboard Design', '🎮 Gaming', '📚 Learning', '☕ Coffee', '✈️ Travel', '🎵 Music'].map((interest) => (
+          {['✈️ Traveling', '📚 Learning', '💪 Working Out', '🍜 Food Explorer', '☕ Coffee', '🎵 Music'].map((interest) => (
             <span 
               key={interest}
               className="px-3 py-1.5 rounded-full text-sm bg-secondary text-secondary-foreground"
@@ -93,6 +96,41 @@ export function AboutContent() {
               {interest}
             </span>
           ))}
+        </div>
+      </motion.div>
+
+      {/* Recommendation */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+          <Quote className="w-5 h-5 text-primary" />
+          What Others Say
+        </h2>
+        <div className="bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/20 rounded-lg p-4">
+          <div className="flex items-start gap-3">
+            <Quote className="w-6 h-6 text-primary/40 flex-shrink-0 mt-1" />
+            <div>
+              <p className="text-sm text-foreground italic mb-3">
+                "I have worked with Nash at InterviewReady. He understood our product requirements, figured out 
+                our data schema, set up data pipelines and had dashboards up in less than 2 weeks! As the above 
+                example shows, Nash is resourceful. He goes out of his way to find root causes, potential solutions 
+                and is up for learning new things. His management of our digital ads and chipping into product 
+                requirements testify his leadership abilities."
+              </p>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-xs font-bold text-primary">GS</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">Gaurav Sen</p>
+                  <p className="text-xs text-muted-foreground">Founder at InterviewReady, Previously at Uber</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>

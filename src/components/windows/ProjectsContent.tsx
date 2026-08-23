@@ -1,7 +1,18 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Lightbulb, Wrench, Target, BarChart3, Database, LineChart, Brain } from 'lucide-react';
+import { ExternalLink, Github, Lightbulb, Wrench, Target, BarChart3, Database, LineChart, Brain, Utensils } from 'lucide-react';
 
 const projects = [
+  {
+    title: 'AI Food Rating for India (Bharat)',
+    category: 'AI & Health Tech',
+    problem: 'Indians needed easy-to-understand health ratings for packaged foods',
+    approach: 'Built AI-powered food scoring system analyzing nutritional data for Indian package food products',
+    tools: ['AI/ML', 'React', 'TypeScript'],
+    results: 'Smart food choices made simple with instant health scoring',
+    icon: <Utensils className="w-5 h-5" />,
+    color: 'from-green-500 to-emerald-400',
+    link: 'https://foodscore.lovable.app/',
+  },
   {
     title: 'Healthcare Web Apps',
     category: 'Full Stack',
@@ -73,6 +84,17 @@ export function ProjectsContent() {
                     <span className="text-xs opacity-80">{project.category}</span>
                   </div>
                 </div>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center backdrop-blur-sm transition-colors"
+                    aria-label="View project"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
               </div>
             </div>
 

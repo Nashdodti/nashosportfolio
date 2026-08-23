@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Apple, Wifi, Battery, Search, SlidersHorizontal } from 'lucide-react';
+import { Wifi, Battery, Search, SlidersHorizontal } from 'lucide-react';
 
 export function MenuBar() {
   const [time, setTime] = useState(new Date());
@@ -33,11 +33,8 @@ export function MenuBar() {
       animate={{ y: 0 }}
       transition={{ delay: 0.2, duration: 0.3 }}
     >
-      {/* Left: Apple menu + app menus */}
+      {/* Left: App menus */}
       <div className="hidden sm:flex items-center gap-4">
-        <button className="hover:bg-foreground/10 px-1.5 py-0.5 rounded transition-colors" aria-label="Apple menu">
-          <Apple className="w-4 h-4 fill-current" />
-        </button>
         <div className="flex items-center gap-3 text-sm font-semibold">
           <span>Finder</span>
         </div>
