@@ -111,23 +111,28 @@ export function MenuBar() {
           <BatteryMenu />
         </MenuBarDropdown>
         
+        {/* Desktop only items */}
         <Search className="hidden sm:block w-4 h-4 opacity-80 cursor-pointer hover:opacity-100 transition-opacity" />
         
-        <MenuBarDropdown 
-          trigger={<SlidersHorizontal className="hidden sm:block w-4 h-4 opacity-80" />}
-          align="right"
-        >
-          <ControlCenterMenu />
-        </MenuBarDropdown>
+        <div className="hidden sm:block">
+          <MenuBarDropdown 
+            trigger={<SlidersHorizontal className="w-4 h-4 opacity-80" />}
+            align="right"
+          >
+            <ControlCenterMenu />
+          </MenuBarDropdown>
+        </div>
         
         <span className="hidden sm:inline opacity-90 cursor-default">{formatDate(time)}</span>
         
-        <MenuBarDropdown 
-          trigger={<span className="hidden sm:inline font-medium">{formatTime(time)}</span>}
-          align="right"
-        >
-          <CalendarMenu />
-        </MenuBarDropdown>
+        <div className="hidden sm:block">
+          <MenuBarDropdown 
+            trigger={<span className="font-medium">{formatTime(time)}</span>}
+            align="right"
+          >
+            <CalendarMenu />
+          </MenuBarDropdown>
+        </div>
       </div>
     </motion.div>
   );
