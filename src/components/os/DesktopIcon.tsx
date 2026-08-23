@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { WindowId } from '@/types/os';
 
@@ -19,27 +19,23 @@ export function DesktopIcon({
   onSelect, 
   onDoubleClick 
 }: DesktopIconProps) {
-  const [lastClickTime, setLastClickTime] = useState(0);
-
   const handleClick = useCallback(() => {
-    const now = Date.now();
-    if (now - lastClickTime < 300) {
-      // Double click
+    if (window.matchMedia('(max-width: 767px)').matches) {
       onDoubleClick();
-    } else {
-      // Single click
-      onSelect();
+      return;
     }
-    setLastClickTime(now);
-  }, [lastClickTime, onSelect, onDoubleClick]);
+    onSelect();
+  }, [onSelect, onDoubleClick]);
 
   return (
     <motion.button
       className={`desktop-icon ${isSelected ? 'selected' : ''}`}
       onClick={handleClick}
+      onDoubleClick={onDoubleClick}
+      aria-label={`Open ${label}`}
       whileTap={{ scale: 0.95 }}
     >
-      <div className="desktop-icon-image w-16 h-16 sm:w-20 sm:h-20">
+      <div className="desktop-icon-image w-16 h-16">
         {icon}
       </div>
       <span className={`desktop-icon-label max-w-[80px] truncate`}>

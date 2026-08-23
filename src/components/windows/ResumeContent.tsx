@@ -12,7 +12,7 @@ export function ResumeContent() {
         transition={{ delay: 0.1 }}
       >
         <h1 className="text-3xl font-bold text-foreground mb-2">Nash Dodti</h1>
-        <p className="text-primary font-medium mb-3">Data Analyst & Product Thinker</p>
+        <p className="text-primary font-medium mb-3">Senior Data Analyst at Uber</p>
         <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
           <span className="flex items-center gap-1">
             <MapPin className="w-3 h-3" /> Mumbai
@@ -41,11 +41,11 @@ export function ResumeContent() {
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">•</span>
-            4+ Years of experience in Data Analytics, Product & Business Analysis
+            Senior data analyst helping teams unlock growth through clear insights and data-driven decisions
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">•</span>
-            Led analytics for Edtech startup featured by Google Startup School
+            Cross-functional experience spanning analytics, product thinking, quality, and growth
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">•</span>

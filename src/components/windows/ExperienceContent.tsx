@@ -3,10 +3,22 @@ import { Building2, Calendar, TrendingUp, Users, Zap } from 'lucide-react';
 
 const experiences = [
   {
+    company: 'Uber',
+    role: 'Senior Data Analyst',
+    location: 'Mumbai Metropolitan Region',
+    period: 'Current',
+    color: 'bg-foreground',
+    achievements: [
+      'Partnering across functions to turn complex data into clear, actionable decisions',
+      'Working across SQL, Python, Tableau and business analytics',
+    ],
+    impact: 'Data strategy & decision support',
+  },
+  {
     company: 'Certify Inc.',
     role: 'Data Analyst | Quality Lead',
     location: 'NYC',
-    period: 'Sep 2023 - Present',
+    period: 'Previous role',
     color: 'bg-primary',
     achievements: [
       'Built and deployed 3 web apps for Doctors in US for healthcare clients',
@@ -50,7 +62,7 @@ export function ExperienceContent() {
     <div className="p-6">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-foreground mb-2">Work Experience</h2>
-        <p className="text-muted-foreground text-sm">4+ years of driving data-informed decisions</p>
+        <p className="text-muted-foreground text-sm">Analytics leadership, product thinking and measurable outcomes</p>
       </div>
 
       <div className="relative">
@@ -68,7 +80,7 @@ export function ExperienceContent() {
             >
               {/* Timeline dot */}
               <div className={`absolute left-0 top-1 w-6 h-6 rounded-full ${exp.color} flex items-center justify-center`}>
-                <Building2 className="w-3 h-3 text-white" />
+                <Building2 className="w-3 h-3 text-primary-foreground" />
               </div>
 
               <div className="bg-card border border-border rounded-xl p-4 hover:shadow-md transition-shadow">
