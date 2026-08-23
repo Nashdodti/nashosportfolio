@@ -15,7 +15,7 @@ export function AboutContent() {
         </div>
         <div className="text-center sm:text-left">
           <h1 className="text-2xl font-bold text-foreground mb-1">Nash Dodti</h1>
-          <p className="text-sm font-medium text-primary mb-1">Senior Data Analyst at Uber</p>
+          <p className="text-sm font-medium text-primary mb-1">Senior Data Analyst @ Uber</p>
           <p className="text-muted-foreground flex items-center justify-center sm:justify-start gap-1">
             <MapPin className="w-4 h-4" /> Mumbai, India
           </p>
@@ -33,12 +33,19 @@ export function AboutContent() {
           My Story
         </h2>
         <p className="text-muted-foreground leading-relaxed">
-          From leading data teams to winning startup awards, I help companies unlock growth through
-          data-driven decisions, sharp insights, and creative problem-solving.
+          From leading data teams to winning startup awards, I've helped companies unlock growth through data-driven decisions, sharp insights, and love making data-driven decisions feel easy.
         </p>
         <p className="text-muted-foreground leading-relaxed mt-3">
-          My toolkit spans Excel, SQL, Tableau, Power BI, Python, R, Looker, Google Analytics, and AI.
-          I thrive in cross-functional teams and enjoy making complex analysis useful to real people.
+          Toolkit spans Excel, SQL, Tableau, Power BI, Python, R, Looker, and Google Analytics (plus a sprinkle of AI), thrives in cross-functional teams and love making data-driven decisions feel easy.
+        </p>
+        <p className="text-muted-foreground leading-relaxed mt-3">
+          - Years of experience in Analytics & Business Strategy – Led analytics for Edtech startup & featured by Google Startup School
+        </p>
+        <p className="text-muted-foreground leading-relaxed mt-2">
+          - Recognized amongst the Top Indian startups to present at Pride of India (ISC) 2023
+        </p>
+        <p className="text-muted-foreground leading-relaxed mt-2">
+          - Strong communicator with proven leadership in cross-functional team environments
         </p>
       </motion.div>
 

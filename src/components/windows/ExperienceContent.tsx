@@ -4,7 +4,7 @@ import { Building2, Calendar, TrendingUp, Users, Zap } from 'lucide-react';
 const experiences = [
   {
     company: 'Uber',
-    role: 'Senior Data Analyst',
+    role: 'Senior Data Analyst @ Uber',
     location: 'Mumbai Metropolitan Region',
     period: 'Current',
     color: 'bg-foreground',

@@ -12,7 +12,7 @@ export function ResumeContent() {
         transition={{ delay: 0.1 }}
       >
         <h1 className="text-3xl font-bold text-foreground mb-2">Nash Dodti</h1>
-        <p className="text-primary font-medium mb-3">Senior Data Analyst at Uber</p>
+        <p className="text-primary font-medium mb-3">Senior Data Analyst @ Uber</p>
         <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
           <span className="flex items-center gap-1">
             <MapPin className="w-3 h-3" /> Mumbai
@@ -41,15 +41,19 @@ export function ResumeContent() {
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">•</span>
-            Senior data analyst helping teams unlock growth through clear insights and data-driven decisions
+            From leading data teams to winning startup awards, I've helped companies unlock growth through data-driven decisions, sharp insights, and love making data-driven decisions feel easy
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">•</span>
-            Cross-functional experience spanning analytics, product thinking, quality, and growth
+            Years of experience in Analytics & Business Strategy – Led analytics for Edtech startup & featured by Google Startup School
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">•</span>
-            Recognized amongst the Top Indian startups at Pride of India 2023
+            Recognized amongst the Top Indian startups to present at Pride of India (ISC) 2023
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary mt-1">•</span>
+            Strong communicator with proven leadership in cross-functional team environments
           </li>
         </ul>
       </motion.section>

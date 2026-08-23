@@ -96,7 +96,7 @@ export default function Desktop() {
           Nash Dodti
         </h1>
         <p className="text-white/90 drop-shadow-md">
-          Senior Data Analyst · Uber
+          Senior Data Analyst @ Uber
         </p>
         <p className="text-sm text-white/70 mt-2 drop-shadow-sm">
           Double-click an icon to explore →
@@ -109,7 +109,7 @@ export default function Desktop() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.18 }}
       >
-        <p className="text-[13px] font-medium text-white/80">Senior Data Analyst</p>
+        <p className="text-[13px] font-medium text-white/80">Senior Data Analyst @ Uber</p>
         <h1 className="mt-0.5 text-[28px] font-semibold tracking-tight text-white">Nash Dodti</h1>
       </motion.section>
 
@@ -133,6 +133,9 @@ export default function Desktop() {
 
       {/* macOS Dock */}
       <Dock windows={windows} onIconClick={handleDockClick} />
+
+      {/* iOS Home Indicator (mobile only) */}
+      <div className="ios-home-indicator sm:hidden" />
     </div>
   );
 }

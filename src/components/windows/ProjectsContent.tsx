@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Lightbulb, Wrench, Target, BarChart3, Database, LineChart, Brain, Utensils } from 'lucide-react';
+import { ExternalLink, Github, Lightbulb, Wrench, Target, BarChart3, Database, LineChart, Brain, Utensils, MessageSquare, Globe } from 'lucide-react';
 
 const projects = [
   {
@@ -14,14 +14,15 @@ const projects = [
     link: 'https://foodscore.lovable.app/',
   },
   {
-    title: 'Healthcare Web Apps',
-    category: 'Full Stack',
-    problem: 'Doctors needed streamlined credentialing workflows',
-    approach: 'Built 3 web applications with automated validation and campaign engines',
-    tools: ['React', 'SQL', 'Looker Studio'],
-    results: 'Serving 3.5k daily users with 60% faster submissions',
-    icon: <Database className="w-5 h-5" />,
-    color: 'from-primary to-primary/70',
+    title: 'AI Data Analyst',
+    category: 'AI & Analytics',
+    problem: 'Data analysis needed to be more accessible and conversational',
+    approach: 'Created AI-powered data analyst tool that answers questions and generates insights',
+    tools: ['AI/ML', 'Python', 'Data Analytics'],
+    results: 'Making data analysis conversational and accessible',
+    icon: <MessageSquare className="w-5 h-5" />,
+    color: 'from-purple-500 to-purple-400',
+    link: 'https://nashdodti-data-analyst-ai.lovable.app/',
   },
   {
     title: 'Executive Dashboards',
@@ -44,14 +45,15 @@ const projects = [
     color: 'from-yellow-500 to-yellow-400',
   },
   {
-    title: 'Automated Testing Framework',
-    category: 'Quality Assurance',
-    problem: 'High bug rate impacting user experience',
-    approach: 'Led implementation of Playwright-based automated testing suite',
-    tools: ['Playwright', 'TypeScript', 'CI/CD'],
-    results: 'Reduced bugs by 50%, improved release confidence',
-    icon: <Brain className="w-5 h-5" />,
-    color: 'from-blue-500 to-blue-400',
+    title: 'Vibe-Coded Portfolio',
+    category: 'Web Development',
+    problem: 'Needed a modern, interactive portfolio to showcase work',
+    approach: 'Built a sleek portfolio website with modern design and smooth interactions',
+    tools: ['React', 'TypeScript', 'Lovable'],
+    results: 'A beautiful portfolio showcasing projects and skills',
+    icon: <Globe className="w-5 h-5" />,
+    color: 'from-blue-500 to-cyan-400',
+    link: 'https://nashfolio.lovable.app/',
   },
 ];
 
