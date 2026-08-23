@@ -98,13 +98,10 @@ export function MenuBar() {
         {/* Battery - both desktop and mobile with dropdowns */}
         <MenuBarDropdown 
           trigger={
-            <div className="flex items-center gap-1">
-              <span className="sm:hidden text-[15px] font-medium text-white">100%</span>
-              <Battery 
-                className="w-5 h-5 text-white sm:text-current sm:fill-transparent fill-white" 
-                strokeWidth={2.5}
-              />
-            </div>
+            <Battery 
+              className="w-5 h-5 text-white sm:text-current sm:fill-transparent fill-white" 
+              strokeWidth={2.5}
+            />
           }
           align="right"
         >
