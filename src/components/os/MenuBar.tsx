@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Wifi, Battery, Search, SlidersHorizontal } from 'lucide-react';
+import { MenuBarDropdown } from './MenuBarDropdown';
+import { FileMenu } from './menus/FileMenu';
+import { EditMenu } from './menus/EditMenu';
+import { ViewMenu } from './menus/ViewMenu';
+import { WifiMenu } from './menus/WifiMenu';
+import { BatteryMenu } from './menus/BatteryMenu';
+import { CalendarMenu } from './menus/CalendarMenu';
+import { ControlCenterMenu } from './menus/ControlCenterMenu';
 
 export function MenuBar() {
   const [time, setTime] = useState(new Date());
@@ -36,14 +44,27 @@ export function MenuBar() {
       {/* Left: App menus */}
       <div className="hidden sm:flex items-center gap-4">
         <div className="flex items-center gap-3 text-sm font-semibold">
-          <span>Finder</span>
+          <span>Portfolio</span>
         </div>
         <div className="flex items-center gap-3 text-sm text-foreground/80">
-          <button className="hover:bg-foreground/10 px-1.5 py-0.5 rounded transition-colors">File</button>
-          <button className="hover:bg-foreground/10 px-1.5 py-0.5 rounded transition-colors">Edit</button>
-          <button className="hover:bg-foreground/10 px-1.5 py-0.5 rounded transition-colors">View</button>
-          <button className="hover:bg-foreground/10 px-1.5 py-0.5 rounded transition-colors">Go</button>
-          <button className="hover:bg-foreground/10 px-1.5 py-0.5 rounded transition-colors">Help</button>
+          <MenuBarDropdown trigger="File">
+            <FileMenu />
+          </MenuBarDropdown>
+          
+          <MenuBarDropdown trigger="Edit">
+            <EditMenu />
+          </MenuBarDropdown>
+          
+          <MenuBarDropdown trigger="View">
+            <ViewMenu />
+          </MenuBarDropdown>
+          
+          <button className="hover:bg-foreground/10 px-1.5 py-0.5 rounded transition-colors">
+            Go
+          </button>
+          <button className="hover:bg-foreground/10 px-1.5 py-0.5 rounded transition-colors">
+            Help
+          </button>
         </div>
       </div>
 
@@ -53,12 +74,37 @@ export function MenuBar() {
       
       {/* Right: Status icons + clock */}
       <div className="flex items-center gap-2 sm:gap-3 text-sm">
-        <Wifi className="w-4 h-4" strokeWidth={2.25} />
-        <Battery className="w-5 h-5" strokeWidth={2.25} />
-        <Search className="hidden sm:block w-4 h-4 opacity-80" />
-        <SlidersHorizontal className="hidden sm:block w-4 h-4 opacity-80" />
-        <span className="hidden sm:inline opacity-90">{formatDate(time)}</span>
-        <span className="hidden sm:inline font-medium">{formatTime(time)}</span>
+        <MenuBarDropdown 
+          trigger={<Wifi className="w-4 h-4" strokeWidth={2.25} />}
+          align="right"
+        >
+          <WifiMenu />
+        </MenuBarDropdown>
+        
+        <MenuBarDropdown 
+          trigger={<Battery className="w-5 h-5" strokeWidth={2.25} />}
+          align="right"
+        >
+          <BatteryMenu />
+        </MenuBarDropdown>
+        
+        <Search className="hidden sm:block w-4 h-4 opacity-80 cursor-pointer hover:opacity-100 transition-opacity" />
+        
+        <MenuBarDropdown 
+          trigger={<SlidersHorizontal className="hidden sm:block w-4 h-4 opacity-80" />}
+          align="right"
+        >
+          <ControlCenterMenu />
+        </MenuBarDropdown>
+        
+        <span className="hidden sm:inline opacity-90 cursor-default">{formatDate(time)}</span>
+        
+        <MenuBarDropdown 
+          trigger={<span className="hidden sm:inline font-medium">{formatTime(time)}</span>}
+          align="right"
+        >
+          <CalendarMenu />
+        </MenuBarDropdown>
       </div>
     </motion.div>
   );
