@@ -12,10 +12,25 @@ import { ControlCenterMenu } from './menus/ControlCenterMenu';
 
 export function MenuBar() {
   const [time, setTime] = useState(new Date());
+  const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    // Get battery level using Battery Status API
+    if ('getBattery' in navigator) {
+      (navigator as any).getBattery().then((battery: any) => {
+        setBatteryLevel(Math.round(battery.level * 100));
+        
+        // Update battery level when it changes
+        battery.addEventListener('levelchange', () => {
+          setBatteryLevel(Math.round(battery.level * 100));
+        });
+      });
+    }
   }, []);
 
   const formatDate = (date: Date) => {
@@ -98,10 +113,17 @@ export function MenuBar() {
         {/* Battery - both desktop and mobile with dropdowns */}
         <MenuBarDropdown 
           trigger={
-            <Battery 
-              className="w-5 h-5 text-white sm:text-current sm:fill-transparent fill-white" 
-              strokeWidth={2.5}
-            />
+            <div className="flex items-center gap-1">
+              {batteryLevel !== null && (
+                <span className="sm:hidden text-[15px] font-medium text-white">
+                  {batteryLevel}%
+                </span>
+              )}
+              <Battery 
+                className="w-5 h-5 text-white sm:text-current sm:fill-transparent fill-white" 
+                strokeWidth={2.5}
+              />
+            </div>
           }
           align="right"
         >
