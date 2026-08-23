@@ -12,12 +12,12 @@ export function Dock({ windows, onIconClick }: DockProps) {
 
   return (
     <motion.div 
-      className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50"
+      className="fixed bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-50"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.3, duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
     >
-      <div className="dock rounded-2xl px-2 py-2 flex items-end gap-1">
+      <div className="dock rounded-[22px] sm:rounded-2xl px-2 py-2 flex items-end gap-1">
         {desktopIcons.map((icon, index) => {
           const isOpen = openWindowIds.includes(icon.id);
           
@@ -32,8 +32,8 @@ export function Dock({ windows, onIconClick }: DockProps) {
               whileHover={{ y: -8, scale: 1.15 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
-                <div className="w-full h-full rounded-xl overflow-hidden bg-gradient-to-br from-white/20 to-white/5 p-0.5">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 flex items-center justify-center">
+                <div className="w-full h-full rounded-xl overflow-hidden">
                   {icon.icon}
                 </div>
               </div>

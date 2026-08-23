@@ -11,7 +11,7 @@ const defaultWindowSizes: Record<WindowId, { width: number; height: number }> = 
 
 const getInitialPosition = (id: WindowId, isMobile: boolean) => {
   if (isMobile) {
-    return { x: 10, y: 40 };
+    return { x: 0, y: 32 };
   }
   
   // Offset from menu bar (28px)

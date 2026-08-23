@@ -12,6 +12,7 @@ import { ProjectsContent } from '@/components/windows/ProjectsContent';
 import { AboutContent } from '@/components/windows/AboutContent';
 import { ContactContent } from '@/components/windows/ContactContent';
 import { WindowId } from '@/types/os';
+import wallpaper from '@/assets/macos-wallpaper.jpg';
 
 const windowContent: Record<WindowId, React.ReactNode> = {
   resume: <ResumeContent />,
@@ -51,7 +52,8 @@ export default function Desktop() {
 
   return (
     <div 
-      className="h-screen w-screen desktop-bg overflow-hidden relative"
+      className="h-[100dvh] w-screen desktop-bg overflow-hidden relative"
+      style={{ backgroundImage: `url(${wallpaper})` }}
       onClick={handleDesktopClick}
     >
       {/* Menu Bar */}
@@ -59,7 +61,7 @@ export default function Desktop() {
 
       {/* Desktop Icons */}
       <motion.div 
-        className="absolute top-10 left-4 flex flex-col gap-1 z-0 pt-2"
+        className="desktop-app-grid absolute z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
@@ -85,21 +87,32 @@ export default function Desktop() {
 
       {/* Welcome Message */}
       <motion.div 
-        className="absolute bottom-24 right-8 max-w-sm text-right hidden lg:block"
+        className="absolute bottom-24 right-8 max-w-sm text-right hidden lg:block desktop-intro"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
       >
-        <h1 className="text-4xl font-bold text-white mb-2 drop-shadow-lg">
-          Hi, I'm <span className="text-gradient">Nash</span>
+        <h1 className="text-4xl font-semibold text-white mb-2 drop-shadow-lg">
+          Nash Dodti
         </h1>
         <p className="text-white/90 drop-shadow-md">
-          Data Analyst & Product Builder
+          Senior Data Analyst · Uber
         </p>
         <p className="text-sm text-white/70 mt-2 drop-shadow-sm">
           Double-click an icon to explore →
         </p>
       </motion.div>
+
+      <motion.section
+        className="mobile-profile-widget sm:hidden"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.18 }}
+      >
+        <span className="text-[11px] font-semibold uppercase text-white/70">Portfolio</span>
+        <h1 className="mt-1 text-2xl font-semibold text-white">Nash Dodti</h1>
+        <p className="mt-0.5 text-sm text-white/80">Senior Data Analyst at Uber</p>
+      </motion.section>
 
       {/* Windows */}
       <AnimatePresence>

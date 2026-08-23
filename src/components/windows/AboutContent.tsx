@@ -14,7 +14,8 @@ export function AboutContent() {
           N
         </div>
         <div className="text-center sm:text-left">
-          <h1 className="text-2xl font-bold text-foreground mb-1">Hey, I'm Nash! 👋</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-1">Nash Dodti</h1>
+          <p className="text-sm font-medium text-primary mb-1">Senior Data Analyst at Uber</p>
           <p className="text-muted-foreground flex items-center justify-center sm:justify-start gap-1">
             <MapPin className="w-4 h-4" /> Mumbai, India
           </p>
@@ -32,14 +33,12 @@ export function AboutContent() {
           My Story
         </h2>
         <p className="text-muted-foreground leading-relaxed">
-          I'm a Data Analyst with 4+ years of experience turning complex data into actionable insights. 
-          My journey started with a Computer Science degree and evolved through roles at startups and 
-          established companies—from Dubai to NYC.
+          From leading data teams to winning startup awards, I help companies unlock growth through
+          data-driven decisions, sharp insights, and creative problem-solving.
         </p>
         <p className="text-muted-foreground leading-relaxed mt-3">
-          Currently pursuing my Masters in Business Analytics at Symbiosis, I'm passionate about 
-          building products that make a real impact. My startup was featured by Google Startup School 
-          and recognized at Pride of India 2023.
+          My toolkit spans Excel, SQL, Tableau, Power BI, Python, R, Looker, Google Analytics, and AI.
+          I thrive in cross-functional teams and enjoy making complex analysis useful to real people.
         </p>
       </motion.div>
 

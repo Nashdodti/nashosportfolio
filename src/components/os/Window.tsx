@@ -49,17 +49,17 @@ export function Window({
         className="fixed os-window"
         style={{
           zIndex: windowState.zIndex,
-          width: isMobile ? 'calc(100vw - 20px)' : windowState.size.width,
-          height: isMobile ? 'calc(100vh - 140px)' : windowState.size.height,
+          width: isMobile ? '100vw' : windowState.size.width,
+          height: isMobile ? 'calc(100dvh - 32px)' : windowState.size.height,
           maxWidth: '100vw',
-          maxHeight: 'calc(100vh - 120px)',
+          maxHeight: isMobile ? 'calc(100dvh - 32px)' : 'calc(100vh - 120px)',
         }}
         initial={{ opacity: 0, scale: 0.95, x: windowState.position.x, y: windowState.position.y + 10 }}
         animate={{ 
           opacity: 1, 
           scale: 1, 
-          x: windowState.position.x,
-          y: windowState.position.y,
+          x: isMobile ? 0 : windowState.position.x,
+          y: isMobile ? 32 : windowState.position.y,
         }}
         exit={{ opacity: 0, scale: 0.95, y: windowState.position.y + 10 }}
         transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
@@ -113,7 +113,7 @@ export function Window({
         </div>
         
         {/* Window Content */}
-        <div className="h-[calc(100%-48px)] overflow-auto os-scrollbar bg-card">
+        <div className="h-[calc(100%-48px)] overflow-auto os-scrollbar bg-card pb-safe">
           {children}
         </div>
       </motion.div>
