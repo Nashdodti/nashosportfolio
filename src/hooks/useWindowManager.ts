@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { WindowId, WindowState } from '@/types/os';
 
 const defaultWindowSizes: Record<WindowId, { width: number; height: number }> = {
@@ -23,6 +23,20 @@ const getInitialPosition = (id: WindowId, isMobile: boolean) => {
     contact: { x: 220, y: 70 },
   };
   return offsets[id];
+};
+
+const getMaximizedBounds = () => {
+  const inset = 12;
+  const top = 36;
+  const bottom = 84;
+
+  return {
+    position: { x: inset, y: top },
+    size: {
+      width: Math.max(320, window.innerWidth - inset * 2),
+      height: Math.max(200, window.innerHeight - top - bottom),
+    },
+  };
 };
 
 export function useWindowManager() {
@@ -51,6 +65,7 @@ export function useWindowManager() {
         id,
         isOpen: true,
         isMinimized: false,
+        isMaximized: false,
         zIndex: highestZIndex + 1,
         position: getInitialPosition(id, isMobile),
         size,
@@ -67,6 +82,41 @@ export function useWindowManager() {
     setWindows(prev => prev.map(w => 
       w.id === id ? { ...w, isMinimized: true } : w
     ));
+  }, []);
+
+  const toggleMaximizeWindow = useCallback((id: WindowId) => {
+    setWindows(prev => prev.map(w => {
+      if (w.id !== id) return w;
+
+      if (w.isMaximized && w.restoreBounds) {
+        return {
+          ...w,
+          isMaximized: false,
+          position: w.restoreBounds.position,
+          size: w.restoreBounds.size,
+          restoreBounds: undefined,
+        };
+      }
+
+      const maximizedBounds = getMaximizedBounds();
+      return {
+        ...w,
+        isMaximized: true,
+        restoreBounds: { position: w.position, size: w.size },
+        ...maximizedBounds,
+      };
+    }));
+  }, []);
+
+  useEffect(() => {
+    const syncMaximizedWindows = () => {
+      setWindows(prev => prev.map(w => (
+        w.isMaximized ? { ...w, ...getMaximizedBounds() } : w
+      )));
+    };
+
+    window.addEventListener('resize', syncMaximizedWindows);
+    return () => window.removeEventListener('resize', syncMaximizedWindows);
   }, []);
 
   const focusWindow = useCallback((id: WindowId) => {
@@ -87,6 +137,7 @@ export function useWindowManager() {
     openWindow,
     closeWindow,
     minimizeWindow,
+    toggleMaximizeWindow,
     focusWindow,
     updateWindowPosition,
   };

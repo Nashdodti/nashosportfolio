@@ -9,6 +9,7 @@ interface WindowProps {
   children: React.ReactNode;
   onClose: () => void;
   onMinimize: () => void;
+  onToggleMaximize: () => void;
   onFocus: () => void;
   onPositionChange: (position: { x: number; y: number }) => void;
 }
@@ -20,12 +21,14 @@ export function Window({
   children,
   onClose,
   onMinimize,
+  onToggleMaximize,
   onFocus,
   onPositionChange,
 }: WindowProps) {
   const constraintsRef = useRef<HTMLDivElement>(null);
   const dragControls = useDragControls();
   const [isMobile, setIsMobile] = useState(false);
+  const [minimizeTarget, setMinimizeTarget] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 767px)');
@@ -35,7 +38,19 @@ export function Window({
     return () => media.removeEventListener('change', sync);
   }, []);
 
-  if (windowState.isMinimized) return null;
+  const handleMinimize = () => {
+    const dockIcon = document.querySelector<HTMLElement>(`[data-dock-icon="${windowState.id}"]`);
+    const dockBounds = dockIcon?.getBoundingClientRect();
+
+    setMinimizeTarget({
+      x: dockBounds ? dockBounds.left + dockBounds.width / 2 : window.innerWidth / 2,
+      y: dockBounds ? dockBounds.top + dockBounds.height / 2 : window.innerHeight - 44,
+    });
+    onMinimize();
+  };
+
+  const minimizedX = minimizeTarget.x - windowState.size.width / 2;
+  const minimizedY = minimizeTarget.y - windowState.size.height;
 
   return (
     <>
@@ -52,21 +67,35 @@ export function Window({
           zIndex: windowState.zIndex,
           top: isMobile ? 'var(--menubar-h)' : undefined,
           left: isMobile ? 0 : undefined,
-          width: isMobile ? '100vw' : windowState.size.width,
-          height: isMobile ? 'calc(100dvh - var(--menubar-h) - var(--dock-h) + 1.1rem)' : windowState.size.height,
           maxWidth: '100vw',
           maxHeight: isMobile ? 'calc(100dvh - var(--menubar-h) - var(--dock-h) + 1.1rem)' : 'calc(100vh - 120px)',
+          transformOrigin: '50% 100%',
+          pointerEvents: windowState.isMinimized ? 'none' : 'auto',
         }}
-        initial={{ opacity: 0, scale: 0.95, x: windowState.position.x, y: windowState.position.y + 10 }}
+        initial={{
+          opacity: 0,
+          scaleX: 0.95,
+          scaleY: 0.95,
+          x: windowState.position.x,
+          y: windowState.position.y + 10,
+          width: isMobile ? '100vw' : windowState.size.width,
+          height: isMobile ? 'calc(100dvh - var(--menubar-h) - var(--dock-h) + 1.1rem)' : windowState.size.height,
+        }}
         animate={{ 
-          opacity: 1, 
-          scale: 1, 
-          x: isMobile ? 0 : windowState.position.x,
-          y: isMobile ? 0 : windowState.position.y,
+          opacity: windowState.isMinimized ? 0 : 1,
+          scaleX: windowState.isMinimized ? 0.08 : 1,
+          scaleY: windowState.isMinimized ? 0.02 : 1,
+          x: windowState.isMinimized ? minimizedX : isMobile ? 0 : windowState.position.x,
+          y: windowState.isMinimized ? minimizedY : isMobile ? 0 : windowState.position.y,
+          width: isMobile ? '100vw' : windowState.size.width,
+          height: isMobile ? 'calc(100dvh - var(--menubar-h) - var(--dock-h) + 1.1rem)' : windowState.size.height,
         }}
         exit={{ opacity: 0, scale: 0.95, y: windowState.position.y + 10 }}
-        transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-        drag={!isMobile}
+        transition={windowState.isMinimized
+          ? { duration: 0.42, ease: [0.5, 0, 0.85, 0.35] }
+          : { duration: 0.24, ease: [0.23, 1, 0.32, 1] }
+        }
+        drag={!isMobile && !windowState.isMaximized && !windowState.isMinimized}
         dragControls={dragControls}
         dragMomentum={false}
         dragConstraints={constraintsRef}
@@ -82,26 +111,32 @@ export function Window({
       >
         {/* Window Header - macOS style */}
         <div 
-          className="os-window-header cursor-move"
+          className={`os-window-header ${windowState.isMaximized ? 'cursor-default' : 'cursor-move'}`}
           onPointerDown={(e) => {
-            if (!isMobile) dragControls.start(e);
+            if (!isMobile && !windowState.isMaximized) dragControls.start(e);
           }}
+          onDoubleClick={() => !isMobile && onToggleMaximize()}
         >
           {/* Traffic lights */}
           <div className="flex items-center gap-2">
             <button 
+              onPointerDown={(e) => e.stopPropagation()}
               onClick={(e) => { e.stopPropagation(); onClose(); }}
               className="window-control window-control-close hover:brightness-90 transition-all"
               aria-label="Close"
             />
             <button 
-              onClick={(e) => { e.stopPropagation(); onMinimize(); }}
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={(e) => { e.stopPropagation(); handleMinimize(); }}
               className="window-control window-control-minimize hover:brightness-90 transition-all"
               aria-label="Minimize"
             />
             <button 
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={(e) => { e.stopPropagation(); onToggleMaximize(); }}
               className="window-control window-control-maximize hover:brightness-90 transition-all" 
-              aria-label="Maximize"
+              aria-label={windowState.isMaximized ? 'Restore window' : 'Maximize'}
+              aria-pressed={windowState.isMaximized}
             />
           </div>
           

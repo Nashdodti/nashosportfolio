@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState, type ComponentType } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useWindowManager } from '@/hooks/useWindowManager';
 import { DesktopIcon } from '@/components/os/DesktopIcon';
@@ -6,21 +6,20 @@ import { Window } from '@/components/os/Window';
 import { Dock } from '@/components/os/Dock';
 import { MenuBar } from '@/components/os/MenuBar';
 import { desktopIcons, windowIcons, windowTitles } from '@/components/os/iconConfig';
-import { ResumeContent } from '@/components/windows/ResumeContent';
-import { ExperienceContent } from '@/components/windows/ExperienceContent';
-import { ProjectsContent } from '@/components/windows/ProjectsContent';
-import { AboutContent } from '@/components/windows/AboutContent';
-import { ContactContent } from '@/components/windows/ContactContent';
 import { WindowId } from '@/types/os';
 import wallpaper from '@/assets/macos-wallpaper.jpg';
 
-const windowContent: Record<WindowId, React.ReactNode> = {
-  resume: <ResumeContent />,
-  experience: <ExperienceContent />,
-  projects: <ProjectsContent />,
-  about: <AboutContent />,
-  contact: <ContactContent />,
+const windowContent: Record<WindowId, ComponentType> = {
+  resume: lazy(() => import('@/components/windows/ResumeContent').then(({ ResumeContent }) => ({ default: ResumeContent }))),
+  experience: lazy(() => import('@/components/windows/ExperienceContent').then(({ ExperienceContent }) => ({ default: ExperienceContent }))),
+  projects: lazy(() => import('@/components/windows/ProjectsContent').then(({ ProjectsContent }) => ({ default: ProjectsContent }))),
+  about: lazy(() => import('@/components/windows/AboutContent').then(({ AboutContent }) => ({ default: AboutContent }))),
+  contact: lazy(() => import('@/components/windows/ContactContent').then(({ ContactContent }) => ({ default: ContactContent }))),
 };
+
+function WindowContentFallback() {
+  return <div className="h-full animate-pulse bg-muted/30" aria-label="Loading window content" />;
+}
 
 export default function Desktop() {
   const [selectedIcon, setSelectedIcon] = useState<WindowId | null>(null);
@@ -29,6 +28,7 @@ export default function Desktop() {
     openWindow, 
     closeWindow, 
     minimizeWindow, 
+    toggleMaximizeWindow,
     focusWindow, 
     updateWindowPosition 
   } = useWindowManager();
@@ -115,20 +115,27 @@ export default function Desktop() {
 
       {/* Windows */}
       <AnimatePresence>
-        {windows.map((window) => (
-          <Window
-            key={window.id}
-            window={window}
-            title={windowTitles[window.id]}
-            icon={windowIcons[window.id]}
-            onClose={() => closeWindow(window.id)}
-            onMinimize={() => minimizeWindow(window.id)}
-            onFocus={() => focusWindow(window.id)}
-            onPositionChange={(pos) => updateWindowPosition(window.id, pos)}
-          >
-            {windowContent[window.id]}
-          </Window>
-        ))}
+        {windows.map((window) => {
+          const Content = windowContent[window.id];
+
+          return (
+            <Window
+              key={window.id}
+              window={window}
+              title={windowTitles[window.id]}
+              icon={windowIcons[window.id]}
+              onClose={() => closeWindow(window.id)}
+              onMinimize={() => minimizeWindow(window.id)}
+              onToggleMaximize={() => toggleMaximizeWindow(window.id)}
+              onFocus={() => focusWindow(window.id)}
+              onPositionChange={(pos) => updateWindowPosition(window.id, pos)}
+            >
+              <Suspense fallback={<WindowContentFallback />}>
+                <Content />
+              </Suspense>
+            </Window>
+          );
+        })}
       </AnimatePresence>
 
       {/* macOS Dock */}

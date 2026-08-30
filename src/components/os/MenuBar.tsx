@@ -9,6 +9,7 @@ import { WifiMenu } from './menus/WifiMenu';
 import { BatteryMenu } from './menus/BatteryMenu';
 import { CalendarMenu } from './menus/CalendarMenu';
 import { ControlCenterMenu } from './menus/ControlCenterMenu';
+import { MobileNetworkMenu } from './menus/MobileNetworkMenu';
 
 export function MenuBar() {
   const [time, setTime] = useState(new Date());
@@ -60,7 +61,11 @@ export function MenuBar() {
       <div className="flex items-center gap-2 sm:gap-4 sm:flex-1">
         {/* Mobile: Signal indicators */}
         <div className="sm:hidden flex items-center gap-1.5">
-          <Signal className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
+          <MenuBarDropdown
+            trigger={<Signal className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />}
+          >
+            <MobileNetworkMenu />
+          </MenuBarDropdown>
           <Wifi className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
         </div>
 

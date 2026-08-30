@@ -1,24 +1,22 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Send, Terminal, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Mail, Linkedin, Github, ChevronRight, Copy } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function ContactContent() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [terminalLines, setTerminalLines] = useState([
+  const terminalLines = [
     { type: 'comment', text: '// Welcome to Nash\'s Terminal' },
     { type: 'command', text: 'whoami' },
     { type: 'output', text: 'nash-dodti @ data-analyst' },
     { type: 'command', text: 'cat contact.txt' },
-  ]);
+  ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success('Message sent! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('dodtinash@gmail.com');
+      toast.success('Email copied to clipboard');
+    } catch {
+      toast.error('Could not copy the email address');
+    }
   };
 
   const contactLinks = [
@@ -26,8 +24,8 @@ export function ContactContent() {
       icon: <Mail className="w-5 h-5" />,
       label: 'Email',
       value: 'dodtinash@gmail.com',
-      href: 'mailto:dodtinash@gmail.com',
       color: 'bg-primary/10 text-primary',
+      copyable: true,
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
@@ -76,63 +74,46 @@ export function ContactContent() {
         >
           <h3 className="text-sm font-medium text-muted-foreground mb-3">Quick Links</h3>
           <div className="space-y-2">
-            {contactLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors group"
-              >
+            {contactLinks.map((link) => {
+              const content = <>
                 <div className={`w-10 h-10 rounded-lg ${link.color} flex items-center justify-center`}>
                   {link.icon}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 text-left">
                   <div className="text-sm font-medium text-foreground">{link.label}</div>
                   <div className="text-xs text-muted-foreground">{link.value}</div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
-              </a>
-            ))}
+                {link.copyable ? (
+                  <Copy className="w-4 h-4 text-muted-foreground group-hover:scale-110 transition-transform" />
+                ) : (
+                  <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
+                )}
+              </>;
+
+              return link.copyable ? (
+                <button
+                  key={link.label}
+                  type="button"
+                  onClick={copyEmail}
+                  className="flex w-full items-center gap-3 p-3 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors group"
+                  aria-label="Copy email address"
+                >
+                  {content}
+                </button>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors group"
+                >
+                  {content}
+                </a>
+              );
+            })}
           </div>
         </motion.div>
-
-        {/* Contact Form */}
-        <motion.form
-          onSubmit={handleSubmit}
-          className="space-y-3"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <h3 className="text-sm font-medium text-muted-foreground">Send a Message</h3>
-          <Input
-            placeholder="Your name"
-            value={formData.name}
-            onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-            className="bg-secondary/50 border-border"
-            required
-          />
-          <Input
-            type="email"
-            placeholder="Your email"
-            value={formData.email}
-            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-            className="bg-secondary/50 border-border"
-            required
-          />
-          <Textarea
-            placeholder="Your message..."
-            value={formData.message}
-            onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-            className="bg-secondary/50 border-border resize-none h-20"
-            required
-          />
-          <Button type="submit" className="w-full gap-2">
-            <Send className="w-4 h-4" />
-            Send Message
-          </Button>
-        </motion.form>
       </div>
     </div>
   );
