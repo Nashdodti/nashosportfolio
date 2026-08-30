@@ -12,7 +12,7 @@ export function ResumeContent() {
         transition={{ delay: 0.1 }}
       >
         <h1 className="text-3xl font-bold text-foreground mb-2">Nash Dodti</h1>
-        <p className="text-primary font-medium mb-3">Senior Data Analyst @ Uber</p>
+        <p className="text-foreground font-medium mb-3">Senior Data Analyst @ Uber</p>
         <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
           <span className="flex items-center gap-1">
             <MapPin className="w-3 h-3" /> Mumbai
@@ -33,26 +33,26 @@ export function ResumeContent() {
         transition={{ delay: 0.2 }}
       >
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-            <Award className="w-4 h-4 text-primary" />
+          <span className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center">
+            <Award className="w-4 h-4 text-background" />
           </span>
           Summary
         </h2>
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">•</span>
+            <span className="text-foreground mt-1">•</span>
             From leading data teams to winning startup awards, I've helped companies unlock growth through data-driven decisions, sharp insights, and love making data-driven decisions feel easy
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">•</span>
+            <span className="text-foreground mt-1">•</span>
             Years of experience in Analytics & Business Strategy – Led analytics for Edtech startup & featured by Google Startup School
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">•</span>
+            <span className="text-foreground mt-1">•</span>
             Recognized amongst the Top Indian startups to present at Pride of India (ISC) 2023
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">•</span>
+            <span className="text-foreground mt-1">•</span>
             Strong communicator with proven leadership in cross-functional team environments
           </li>
         </ul>
@@ -84,8 +84,8 @@ export function ResumeContent() {
         transition={{ delay: 0.4 }}
       >
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
-            <GraduationCap className="w-4 h-4 text-accent" />
+          <span className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center">
+            <GraduationCap className="w-4 h-4 text-background" />
           </span>
           Education
         </h2>
@@ -105,7 +105,7 @@ export function ResumeContent() {
                 <h3 className="font-medium text-foreground">Bachelor's Computer Science</h3>
                 <p className="text-sm text-muted-foreground">Fr. C. Rodrigues College of Engineering</p>
               </div>
-              <span className="text-xs text-primary font-medium">8.7 GPA</span>
+              <span className="text-xs text-foreground font-medium">8.7 GPA</span>
             </div>
           </div>
         </div>
@@ -120,11 +120,11 @@ export function ResumeContent() {
         <h2 className="text-lg font-semibold text-foreground mb-3">Certifications & Awards</h2>
         <div className="space-y-2 text-sm">
           <div className="flex items-center gap-2 text-muted-foreground">
-            <span className="w-2 h-2 rounded-full bg-primary" />
+            <span className="w-2 h-2 rounded-full bg-foreground" />
             Google Data Analytics Professional Certification
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
-            <span className="w-2 h-2 rounded-full bg-accent" />
+            <span className="w-2 h-2 rounded-full bg-foreground" />
             Top Startup Award - Google
           </div>
         </div>

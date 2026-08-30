@@ -11,9 +11,17 @@ import { CalendarMenu } from './menus/CalendarMenu';
 import { ControlCenterMenu } from './menus/ControlCenterMenu';
 import { MobileNetworkMenu } from './menus/MobileNetworkMenu';
 
+interface BatteryManager extends EventTarget {
+  level: number;
+}
+
+type NavigatorWithBattery = Navigator & {
+  getBattery?: () => Promise<BatteryManager>;
+};
+
 export function MenuBar() {
   const [time, setTime] = useState(new Date());
-  const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
+  const [batteryLevel, setBatteryLevel] = useState(100);
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
@@ -21,17 +29,21 @@ export function MenuBar() {
   }, []);
 
   useEffect(() => {
-    // Get battery level using Battery Status API
-    if ('getBattery' in navigator) {
-      (navigator as any).getBattery().then((battery: any) => {
-        setBatteryLevel(Math.round(battery.level * 100));
-        
-        // Update battery level when it changes
-        battery.addEventListener('levelchange', () => {
-          setBatteryLevel(Math.round(battery.level * 100));
-        });
-      });
-    }
+    const batteryNavigator = navigator as NavigatorWithBattery;
+    if (!batteryNavigator.getBattery) return;
+
+    let battery: BatteryManager | undefined;
+    const updateBatteryLevel = () => {
+      if (battery) setBatteryLevel(Math.round(battery.level * 100));
+    };
+
+    batteryNavigator.getBattery().then((manager) => {
+      battery = manager;
+      updateBatteryLevel();
+      battery.addEventListener('levelchange', updateBatteryLevel);
+    }).catch(() => undefined);
+
+    return () => battery?.removeEventListener('levelchange', updateBatteryLevel);
   }, []);
 
   const formatDate = (date: Date) => {
@@ -66,7 +78,6 @@ export function MenuBar() {
           >
             <MobileNetworkMenu />
           </MenuBarDropdown>
-          <Wifi className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
         </div>
 
         {/* Desktop: App menus */}
@@ -119,11 +130,9 @@ export function MenuBar() {
         <MenuBarDropdown 
           trigger={
             <div className="flex items-center gap-1">
-              {batteryLevel !== null && (
-                <span className="sm:hidden text-[15px] font-medium text-white">
-                  {batteryLevel}%
-                </span>
-              )}
+              <span className="text-[15px] sm:text-[13px] font-medium text-white sm:text-current">
+                {batteryLevel}%
+              </span>
               <Battery 
                 className="w-5 h-5 text-white sm:text-current sm:fill-transparent fill-white" 
                 strokeWidth={2.5}

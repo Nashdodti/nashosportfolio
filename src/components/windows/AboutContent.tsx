@@ -10,12 +10,12 @@ export function AboutContent() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="w-28 h-28 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-4xl font-bold shadow-lg">
+        <div className="w-28 h-28 rounded-2xl bg-foreground flex items-center justify-center text-background text-4xl font-bold shadow-sm">
           N
         </div>
         <div className="text-center sm:text-left">
           <h1 className="text-2xl font-bold text-foreground mb-1">Nash Dodti</h1>
-          <p className="text-sm font-medium text-primary mb-1">Senior Data Analyst @ Uber</p>
+          <p className="text-sm font-medium text-foreground mb-1">Senior Data Analyst @ Uber</p>
           <p className="text-muted-foreground flex items-center justify-center sm:justify-start gap-1">
             <MapPin className="w-4 h-4" /> Mumbai, India
           </p>
@@ -29,7 +29,7 @@ export function AboutContent() {
         transition={{ delay: 0.1 }}
       >
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-accent" />
+          <Sparkles className="w-5 h-5 text-foreground" />
           My Story
         </h2>
         <p className="text-muted-foreground leading-relaxed">
@@ -56,13 +56,13 @@ export function AboutContent() {
         transition={{ delay: 0.2 }}
       >
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-          <Rocket className="w-5 h-5 text-primary" />
+          <Rocket className="w-5 h-5 text-foreground" />
           What Drives Me
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-lg bg-secondary/50 flex items-start gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <Code className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 rounded-lg bg-foreground/10 flex items-center justify-center flex-shrink-0">
+              <Code className="w-5 h-5 text-foreground" />
             </div>
             <div>
               <h3 className="font-medium text-foreground text-sm">Business Problems</h3>
@@ -70,8 +70,8 @@ export function AboutContent() {
             </div>
           </div>
           <div className="p-3 rounded-lg bg-secondary/50 flex items-start gap-3">
-            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-              <Heart className="w-5 h-5 text-accent" />
+            <div className="w-10 h-10 rounded-lg bg-foreground/10 flex items-center justify-center flex-shrink-0">
+              <Heart className="w-5 h-5 text-foreground" />
             </div>
             <div>
               <h3 className="font-medium text-foreground text-sm">Data-Driven Decisions</h3>
@@ -88,7 +88,7 @@ export function AboutContent() {
         transition={{ delay: 0.3 }}
       >
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-          <Coffee className="w-5 h-5 text-yellow-500" />
+          <Coffee className="w-5 h-5 text-foreground" />
           When I'm Not Working
         </h2>
         <p className="text-sm text-muted-foreground mb-3">
@@ -113,12 +113,12 @@ export function AboutContent() {
         transition={{ delay: 0.4 }}
       >
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-          <Quote className="w-5 h-5 text-primary" />
+          <Quote className="w-5 h-5 text-foreground" />
           What Others Say
         </h2>
-        <div className="bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/20 rounded-lg p-4">
+        <div className="bg-secondary/50 border border-border rounded-lg p-4">
           <div className="flex items-start gap-3">
-            <Quote className="w-6 h-6 text-primary/40 flex-shrink-0 mt-1" />
+            <Quote className="w-6 h-6 text-foreground/40 flex-shrink-0 mt-1" />
             <div>
               <p className="text-sm text-foreground italic mb-3">
                 "I have worked with Nash at InterviewReady. He understood our product requirements, figured out 
@@ -128,8 +128,8 @@ export function AboutContent() {
                 requirements testify his leadership abilities."
               </p>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-xs font-bold text-primary">GS</span>
+                <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center">
+                  <span className="text-xs font-bold text-foreground">GS</span>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Gaurav Sen</p>

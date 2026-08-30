@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Building2, Calendar, TrendingUp, Users, Zap } from 'lucide-react';
+import { Building2, Calendar, TrendingUp, Zap } from 'lucide-react';
 
 const experiences = [
   {
@@ -7,7 +7,6 @@ const experiences = [
     role: 'Senior Data Analyst @ Uber',
     location: 'Mumbai Metropolitan Region',
     period: 'Current',
-    color: 'bg-foreground',
     achievements: [
       'Partnering across functions to turn complex data into clear, actionable decisions',
       'Working across SQL, Python, Tableau and business analytics',
@@ -19,7 +18,6 @@ const experiences = [
     role: 'Data Analyst | Quality Lead',
     location: 'NYC',
     period: 'Previous role',
-    color: 'bg-primary',
     achievements: [
       'Built and deployed 3 web apps for Doctors in US for healthcare clients',
       'Created internal tools (Campaign Engine, CAQH Validator) saving 2 ops team time',
@@ -33,7 +31,6 @@ const experiences = [
     role: 'Lead Data Analyst',
     location: 'India',
     period: 'Sep 2022 - Aug 2023',
-    color: 'bg-accent',
     achievements: [
       'Built interactive Tableau & Looker dashboards increasing efficiency by 90%',
       'Developed advanced SQL queries, cutting reporting time by 50%',
@@ -47,7 +44,6 @@ const experiences = [
     role: 'Business Analyst',
     location: 'Dubai',
     period: 'Jun 2021 - Sep 2022',
-    color: 'bg-yellow-500',
     achievements: [
       'Built Looker Studio reports improving marketing campaigns',
       'Managed and trained 2 interns, boosting delivery speed by 30%',
@@ -79,15 +75,15 @@ export function ExperienceContent() {
               transition={{ delay: index * 0.15 }}
             >
               {/* Timeline dot */}
-              <div className={`absolute left-0 top-1 w-6 h-6 rounded-full ${exp.color} flex items-center justify-center`}>
-                <Building2 className="w-3 h-3 text-primary-foreground" />
+              <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-foreground flex items-center justify-center">
+                <Building2 className="w-3 h-3 text-background" />
               </div>
 
               <div className="bg-card border border-border rounded-xl p-4 hover:shadow-md transition-shadow">
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                   <div>
                     <h3 className="font-semibold text-foreground">{exp.company}</h3>
-                    <p className="text-sm text-primary font-medium">{exp.role}</p>
+                    <p className="text-sm text-foreground font-medium">{exp.role}</p>
                     <p className="text-xs text-muted-foreground">{exp.location}</p>
                   </div>
                   <span className="flex items-center gap-1 text-xs text-muted-foreground bg-secondary px-2 py-1 rounded-full">
@@ -99,15 +95,15 @@ export function ExperienceContent() {
                 <ul className="space-y-2 mb-4">
                   {exp.achievements.map((achievement, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <Zap className="w-3 h-3 text-accent mt-1 flex-shrink-0" />
+                      <Zap className="w-3 h-3 text-foreground mt-1 flex-shrink-0" />
                       {achievement}
                     </li>
                   ))}
                 </ul>
 
                 <div className="flex items-center gap-2 pt-3 border-t border-border">
-                  <TrendingUp className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">{exp.impact}</span>
+                  <TrendingUp className="w-4 h-4 text-foreground" />
+                  <span className="text-sm font-medium text-foreground">{exp.impact}</span>
                 </div>
               </div>
             </motion.div>

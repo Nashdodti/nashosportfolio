@@ -10,7 +10,6 @@ const projects = [
     tools: ['AI/ML', 'React', 'TypeScript'],
     results: 'Smart food choices made simple with instant health scoring',
     icon: <Utensils className="w-5 h-5" />,
-    color: 'from-green-500 to-emerald-400',
     link: 'https://foodscore.lovable.app/',
   },
   {
@@ -21,7 +20,6 @@ const projects = [
     tools: ['AI/ML', 'Python', 'Data Analytics'],
     results: 'Making data analysis conversational and accessible',
     icon: <MessageSquare className="w-5 h-5" />,
-    color: 'from-purple-500 to-purple-400',
     link: 'https://nashdodti-data-analyst-ai.lovable.app/',
   },
   {
@@ -32,7 +30,6 @@ const projects = [
     tools: ['Tableau', 'Looker', 'SQL'],
     results: '90% improvement in decision-making efficiency',
     icon: <LineChart className="w-5 h-5" />,
-    color: 'from-accent to-accent/70',
   },
   {
     title: 'Marketing Analytics',
@@ -42,7 +39,6 @@ const projects = [
     tools: ['Google Analytics', 'Excel', 'Python'],
     results: '377% ROI on $240 Google Ads budget, 18% traffic increase',
     icon: <BarChart3 className="w-5 h-5" />,
-    color: 'from-yellow-500 to-yellow-400',
   },
   {
     title: 'Vibe-Coded Portfolio',
@@ -52,7 +48,6 @@ const projects = [
     tools: ['React', 'TypeScript', 'Lovable'],
     results: 'A beautiful portfolio showcasing projects and skills',
     icon: <Globe className="w-5 h-5" />,
-    color: 'from-blue-500 to-cyan-400',
     link: 'https://nashfolio.lovable.app/',
   },
 ];
@@ -75,10 +70,10 @@ export function ProjectsContent() {
             transition={{ delay: index * 0.1 }}
           >
             {/* Header */}
-            <div className={`bg-gradient-to-r ${project.color} p-4 text-white`}>
+            <div className="bg-foreground p-4 text-background">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                  <div className="w-10 h-10 rounded-xl bg-background/15 flex items-center justify-center">
                     {project.icon}
                   </div>
                   <div>
@@ -91,7 +86,7 @@ export function ProjectsContent() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center backdrop-blur-sm transition-colors"
+                    className="w-8 h-8 rounded-lg bg-background/15 hover:bg-background/25 flex items-center justify-center transition-colors"
                     aria-label="View project"
                   >
                     <ExternalLink className="w-4 h-4" />
@@ -128,7 +123,7 @@ export function ProjectsContent() {
               </div>
 
               <div className="pt-3 border-t border-border">
-                <div className="flex items-center gap-2 text-xs font-medium text-primary mb-1">
+                <div className="flex items-center gap-2 text-xs font-medium text-foreground mb-1">
                   <Target className="w-3 h-3" /> Results
                 </div>
                 <p className="text-sm font-medium text-foreground">{project.results}</p>
